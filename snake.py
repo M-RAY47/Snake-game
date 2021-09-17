@@ -15,11 +15,17 @@ class Snake:
 
 	def create_snake(self):
 		for position in STARTING_POSITIONS:
-			new_tail = Turtle(shape="square")
-			new_tail.color("white"), new_tail.penup()
-			new_tail.goto(position)
-			self.tails.append(new_tail)
+			self.add_tail(position)
 
+	def add_tail(self, position):
+		new_tail = Turtle(shape="square")
+		new_tail.color("white"), new_tail.penup()
+		new_tail.goto(position)
+		self.tails.append(new_tail)
+
+	def extend(self):
+		#Extend the snake tail
+		self.add_tail(self.tails[-1].position())
 	def move(self):
 		for tail_num in range(len(self.tails)-1, 0, -1):
 			new_x = self.tails[tail_num-1].xcor()
